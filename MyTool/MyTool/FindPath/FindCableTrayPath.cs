@@ -4,8 +4,11 @@ using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Selection;
 using MyTool.ExtensionMethod;
 using MyTool.Filter;
+using MyTool.View;
+using MyTool.ViewModel;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Interop;
 using OperationCanceledException = Autodesk.Revit.Exceptions.OperationCanceledException;
 
 namespace MyTool.FindPath
@@ -54,41 +57,49 @@ namespace MyTool.FindPath
                 #endregion
 
                 #region 元素邻接表，路径BFS算法
-                Dictionary<ElementId, List<ElementId>> neighborList = GetNeighborList(doc, allCandidateElems);
-                List<List<ElementId>> pathList = GetAllPath(doc, neighborList, startElem.Id, endElem.Id);
+                Dictionary<ElementId, List<ElementId>> neighborKVPairs = GetNeighborList(doc, allCandidateElems);
+                List<List<ElementId>> pathList = GetAllPath(doc, neighborKVPairs, startElem.Id, endElem.Id);
                 pathList = pathList.OrderBy(p => GetPathLength(doc, p)).ToList();
                 #endregion
 
                 #region WPF窗口，MVVM模式
-                List<VM_RouteList> vm_RouteList = new List<VM_RouteList>();
-                foreach (var route in pathList)
-                {
-                    VM_RouteList vm = new VM_RouteList(route, pathList.IndexOf(route) + 1);
-                    vm_RouteList.Add(vm);
-                }
-
-                Window_RouteList window_route = new Window_RouteList(vm_RouteList);
-                WindowInteropHelper helper = new WindowInteropHelper(window_route);
+                VM_FindCableTrayPath vm = new VM_FindCableTrayPath(pathList);
+                Window_FindCableTrayPath win = new Window_FindCableTrayPath(vm);
+                WindowInteropHelper helper = new WindowInteropHelper(win);
                 helper.Owner = Autodesk.Windows.ComponentManager.ApplicationWindow;
-                window_route.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-                window_route.ShowDialog();
+                win.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+                win.ShowDialog();
 
-                List<ElementId> reviewElem = null;
+                List<ElementId> reviewElem = new List<ElementId>();       
                 while (true)
                 {
-                    if (window_route.IsReview)
-                    {
-                        window_route.IsReview = false;
-                        reviewElem = (window_route.listBox.SelectedItem as VM_RouteList).RouteList;
-                        sel.SetElementIds(reviewElem);
-                        uiDoc.RefreshActiveView();
-                        window_route.ShowDialog();
-                    }
-                    else if (window_route.IsDirectClose)
+                    if (vm.DialogResult == true)
                     {
                         break;
                     }
+                    reviewElem = vm.PathElemIds;
+                    sel.SetElementIds(reviewElem);
+                    uiDoc.RefreshActiveView();
+                    
                 }
+
+
+                //while (true)
+                //{
+                //    if (window_route.IsReview)
+                //    {
+                //        window_route.IsReview = false;
+                //        reviewElem = (window_route.listBox.SelectedItem as VM_RouteList).RouteList;
+                //        sel.SetElementIds(reviewElem);
+                //        uiDoc.RefreshActiveView();
+                //        window_route.ShowDialog();
+                //    }
+                //    else if (window_route.IsDirectClose)
+                //    {
+                //        break;
+                //    }
+                //}
+                #endregion
 
                 return Result.Succeeded;
             }
