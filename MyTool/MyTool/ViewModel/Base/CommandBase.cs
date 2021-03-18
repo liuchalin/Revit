@@ -5,18 +5,53 @@ namespace MyTool.ViewModel
 {
     public class CommandBase : ICommand
     {
-        public event EventHandler CanExecuteChanged;
+        Func<object, bool> _canExecute;
+        Action<object> _execute;
+
+        public event EventHandler CanExecuteChanged
+        {
+            add
+            {
+                if (_canExecute != null)
+                {
+                    CommandManager.RequerySuggested += value;
+                }
+            }
+            remove
+            {
+                if (_canExecute != null)
+                {
+                    CommandManager.RequerySuggested -= value;
+                }
+            }
+        }
 
         public bool CanExecute(object parameter)
         {
-            return true;
+            if (_canExecute == null)
+            {
+                return true;
+            }
+            return _canExecute(parameter);
         }
 
         public void Execute(object parameter)
         {
-            DoExecute?.Invoke(parameter);
+            if (_execute != null && CanExecute(parameter))
+            {
+                _execute(parameter);
+            }
         }
 
-        public Action<object> DoExecute { get; set; }
+        public CommandBase(Action<object> execute)
+        {
+            _execute = execute;
+        }
+
+        public CommandBase(Action<object> execute, Func<object, bool> canExecute)
+        {
+            _execute = execute;
+            _canExecute = canExecute;
+        }
     }
 }

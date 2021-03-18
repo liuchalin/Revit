@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 namespace MyTool.ViewModel
 {
-    public class VM_FindCableTrayPath : NotifyPropertyBase
+    public class VM_FindPipePath : NotifyPropertyBase
     {
-        public List<Model_FindCableTrayPath> PathList { get; set; }
-        public Model_FindCableTrayPath Path { get; set; }
+        public List<Model_FindPipePath> PathList { get; set; }
+        public Model_FindPipePath Path { get; set; }
 
         private bool _toClose;
         public bool ToClose
@@ -25,7 +25,7 @@ namespace MyTool.ViewModel
         {
             get { return _toHide; }
             set
-            { 
+            {
                 _toHide = value;
                 OnPropertyChanged("ToHide");
             }
@@ -34,9 +34,9 @@ namespace MyTool.ViewModel
         private CommandBase _closeCmd;
         public CommandBase CloseCmd
         {
-            get 
+            get
             {
-                if (_closeCmd == null) 
+                if (_closeCmd == null)
                 {
                     _closeCmd = new CommandBase(new Action<object>(o =>
                     {
@@ -52,18 +52,18 @@ namespace MyTool.ViewModel
         {
             get
             {
-                if (_reviewSelection == null) 
+                if (_reviewSelection == null)
                 {
-                    _reviewSelection = new CommandBase(new Action<object>(o => 
+                    _reviewSelection = new CommandBase(new Action<object>(o =>
                     {
                         ToHide = true;
                     }));
                 }
-                return _reviewSelection; 
+                return _reviewSelection;
             }
         }
 
-        public VM_FindCableTrayPath(List<Model_FindCableTrayPath> models)
+        public VM_FindPipePath(List<Model_FindPipePath> models)
         {
             PathList = models;
         }

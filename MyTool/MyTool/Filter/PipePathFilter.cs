@@ -1,25 +1,28 @@
 ﻿using Autodesk.Revit.DB;
-using Autodesk.Revit.DB.Electrical;
+using Autodesk.Revit.DB.Plumbing;
 using Autodesk.Revit.UI.Selection;
 
 namespace MyTool.Filter
 {
-    class CableTrayPathFilter : ISelectionFilter
+    class PipePathFilter : ISelectionFilter
     {
         public bool AllowElement(Element elem)
         {
-            if (elem is CableTray)
+            if (elem is Pipe)
             {
-                return true;
+                return false;
             }
             else if (elem is FamilyInstance)
             {
                 int categoryID = (elem as FamilyInstance).Category.Id.IntegerValue;
-                if (categoryID == (int)BuiltInCategory.OST_CableTrayFitting)
+                if (categoryID == (int)BuiltInCategory.OST_PipeAccessory || categoryID == (int)BuiltInCategory.OST_PipeFitting)
                 {
                     return true;
                 }
-                else return false;
+                else
+                {
+                    return false;
+                }
             }
             else
             {
