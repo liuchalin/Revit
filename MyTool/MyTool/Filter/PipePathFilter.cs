@@ -10,7 +10,7 @@ namespace MyTool.Filter
         {
             if (elem is Pipe)
             {
-                return false;
+                return true;
             }
             else if (elem is FamilyInstance)
             {

@@ -1,18 +1,17 @@
 ﻿using MyTool.ViewModel;
 using System.Windows;
-using System.Windows.Input;
 
 namespace MyTool.View
 {
-    public partial class Window_FindPipePath : Window
+    public partial class WIndow_WriteCableCountInfo : Window
     {
-        public Window_FindPipePath(VM_FindPipePath vm)
+        public WIndow_WriteCableCountInfo(VM_WriteCableCountInfo vm)
         {
             InitializeComponent();
             DataContext = vm;
         }
 
-        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void Window_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             base.OnMouseDown(e);
             this.DragMove();

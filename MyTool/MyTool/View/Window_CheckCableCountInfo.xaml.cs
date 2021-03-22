@@ -4,9 +4,12 @@ using System.Windows.Input;
 
 namespace MyTool.View
 {
-    public partial class Window_FindPipePath : Window
+    /// <summary>
+    /// Window_CheckCableCountInfo.xaml 的交互逻辑
+    /// </summary>
+    public partial class Window_CheckCableCountInfo : Window
     {
-        public Window_FindPipePath(VM_FindPipePath vm)
+        public Window_CheckCableCountInfo(VM_CheckCableCountInfo vm)
         {
             InitializeComponent();
             DataContext = vm;

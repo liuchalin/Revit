@@ -39,9 +39,9 @@ namespace MyTool.ViewModel
                 if (_closeCmd == null)
                 {
                     _closeCmd = new CommandBase(new Action<object>(o =>
-                    {
-                        ToClose = true;
-                    }));
+                      {
+                          ToClose = true;
+                      }));
                 }
                 return _closeCmd;
             }

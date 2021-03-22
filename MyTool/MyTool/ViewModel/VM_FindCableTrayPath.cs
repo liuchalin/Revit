@@ -25,7 +25,7 @@ namespace MyTool.ViewModel
         {
             get { return _toHide; }
             set
-            { 
+            {
                 _toHide = value;
                 OnPropertyChanged("ToHide");
             }
@@ -34,14 +34,14 @@ namespace MyTool.ViewModel
         private CommandBase _closeCmd;
         public CommandBase CloseCmd
         {
-            get 
+            get
             {
-                if (_closeCmd == null) 
+                if (_closeCmd == null)
                 {
                     _closeCmd = new CommandBase(new Action<object>(o =>
-                    {
-                        ToClose = true;
-                    }));
+                      {
+                          ToClose = true;
+                      }));
                 }
                 return _closeCmd;
             }
@@ -52,14 +52,14 @@ namespace MyTool.ViewModel
         {
             get
             {
-                if (_reviewSelection == null) 
+                if (_reviewSelection == null)
                 {
-                    _reviewSelection = new CommandBase(new Action<object>(o => 
+                    _reviewSelection = new CommandBase(new Action<object>(o =>
                     {
                         ToHide = true;
                     }));
                 }
-                return _reviewSelection; 
+                return _reviewSelection;
             }
         }
 

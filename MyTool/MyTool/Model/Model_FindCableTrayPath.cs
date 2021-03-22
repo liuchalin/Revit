@@ -6,8 +6,8 @@ namespace MyTool.Model
     public class Model_FindCableTrayPath
     {
         public int Index { get; set; }
-        public List<ElementId> ElemIds { get; }
-        public double PathLength { get; }        
+        public List<ElementId> ElemIds { get; set; }
+        public double PathLength { get; set; }
 
         public Model_FindCableTrayPath(List<ElementId> path, double length)
         {

@@ -2,15 +2,15 @@
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Selection;
-using MyTool.ExtensionMethod;
+using MyTool.Common;
 using MyTool.Filter;
+using MyTool.Model;
 using MyTool.View;
 using MyTool.ViewModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Interop;
 using OperationCanceledException = Autodesk.Revit.Exceptions.OperationCanceledException;
-using MyTool.Model;
 
 namespace MyTool.FindPath
 {
@@ -56,8 +56,8 @@ namespace MyTool.FindPath
             #endregion
 
             #region 元素邻接表，路径BFS算法
-            Dictionary<ElementId, List<ElementId>> neighborKVPairs = GetNeighborList(doc, allCandidateElems);
-            List<List<ElementId>> pathList = GetAllPath(doc, neighborKVPairs, startElem.Id, endElem.Id);
+            Dictionary<ElementId, List<ElementId>> neighborKVPairs = GetNeighborList(allCandidateElems);
+            List<List<ElementId>> pathList = GetAllPath(neighborKVPairs, startElem.Id, endElem.Id);
             #endregion
 
             List<Model_FindCableTrayPath> models = new List<Model_FindCableTrayPath>();
@@ -134,7 +134,7 @@ namespace MyTool.FindPath
             }
         }
 
-        List<List<ElementId>> GetAllPath(Document doc, Dictionary<ElementId, List<ElementId>> neighborList, ElementId startElemId, ElementId endElemId)
+        List<List<ElementId>> GetAllPath(Dictionary<ElementId, List<ElementId>> neighborList, ElementId startElemId, ElementId endElemId)
         {
             List<List<ElementId>> result = new List<List<ElementId>>();
             Queue<List<ElementId>> queue = new Queue<List<ElementId>>();
@@ -169,7 +169,7 @@ namespace MyTool.FindPath
             return result;
         }
 
-        Dictionary<ElementId, List<ElementId>> GetNeighborList(Document doc, List<Element> allElems)
+        Dictionary<ElementId, List<ElementId>> GetNeighborList(List<Element> allElems)
         {
             Dictionary<ElementId, List<ElementId>> outDic = new Dictionary<ElementId, List<ElementId>>();
             foreach (Element elem in allElems)
