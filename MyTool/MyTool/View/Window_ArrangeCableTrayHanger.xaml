@@ -1,0 +1,29 @@
+﻿<Window x:Class="MyTool.View.Window_ArrangeCableTrayHanger"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyTool.View"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:c="clr-namespace:MyTool.ViewModel"
+        mc:Ignorable="d"
+        Height="250" Width="200"
+        WindowStyle="None" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    <i:Interaction.Behaviors>
+        <c:WindowBehavior Close="{Binding ToClose}"/>
+        <c:WindowBehavior Close="{Binding ToConfirm}"/>
+    </i:Interaction.Behaviors>
+    <StackPanel VerticalAlignment="Center">
+        <TextBlock Margin="10" FontSize="20" Text="请输入支吊架间距" HorizontalAlignment="Center"/>
+        <StackPanel Margin="10" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBox FontSize="12" Width="100" Text="{Binding Path=Span, Mode=TwoWay}" HorizontalAlignment="Center"/>
+            <Label FontSize="12" Content="单位:mm" VerticalAlignment="Center"/>
+        </StackPanel >
+        <StackPanel Margin="10" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Margin="10" FontSize="10" Width="50" Content="OK"
+                Command="{Binding ConfirmCmd}"/>
+            <Button Margin="10" FontSize="10" Width="50" Content="Cancel"
+                Command="{Binding CloseCmd}"/>
+        </StackPanel>
+    </StackPanel>
+</Window>
