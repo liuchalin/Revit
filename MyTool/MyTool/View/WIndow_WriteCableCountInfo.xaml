@@ -3,15 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MyTool.View"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        xmlns:c="clr-namespace:MyTool.ViewModel"
+        xmlns:local="clr-namespace:MyTool.ViewModel"
         mc:Ignorable="d"
         Height="350" Width="400"
         WindowStyle="None" MouseLeftButtonDown="Window_MouseLeftButtonDown">
     <i:Interaction.Behaviors>
-        <c:WindowBehavior Close="{Binding ToClose}"/>
-        <c:WindowBehavior Hide="{Binding IsUpdate}"/>
+        <local:WindowBehavior Close="{Binding ToClose}"/>
+        <local:WindowBehavior Hide="{Binding IsUpdate}"/>
     </i:Interaction.Behaviors>
     <Grid>
         <Grid.RowDefinitions>

@@ -3,6 +3,7 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using MyTool.View;
 using System.Windows.Interop;
+using MyTool.ViewModel;
 
 namespace MyTool.Calculation
 {
@@ -11,7 +12,7 @@ namespace MyTool.Calculation
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            Window_CalVlotageDrop win = new Window_CalVlotageDrop();
+            Window_CalVoltageDrop win = new Window_CalVoltageDrop(new VM_CalVoltageDrop());
             WindowInteropHelper helper = new WindowInteropHelper(win);
             helper.Owner = Autodesk.Windows.ComponentManager.ApplicationWindow;
             win.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;

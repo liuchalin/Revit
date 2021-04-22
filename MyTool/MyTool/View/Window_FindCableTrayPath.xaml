@@ -3,22 +3,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MyTool.View"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        xmlns:c="clr-namespace:MyTool.ViewModel"
+        xmlns:local="clr-namespace:MyTool.ViewModel"
         mc:Ignorable="d"
         Height="350" Width="250" MinHeight="230" 
         WindowStyle="None" MouseLeftButtonDown="Window_MouseLeftButtonDown" >
     <i:Interaction.Behaviors>
-        <c:WindowBehavior Close="{Binding ToClose}"/>
-        <c:WindowBehavior Hide="{Binding ToHide}"/>
+        <local:WindowBehavior Close="{Binding ToClose}"/>
+        <local:WindowBehavior Hide="{Binding ToHide}"/>
     </i:Interaction.Behaviors>
     <Window.Resources>
         <DataTemplate x:Key="listTemplate" DataType="{x:Type Path}">
             <DockPanel>
                 <TextBlock Text="{Binding Index,StringFormat={}{0}号路径: }" xmlns:space="preserve"/>
                 <TextBlock Text="{Binding PathLength,StringFormat={}长度为 {0:F3} 米}" xmlns:space="preserve"/>
-            </DockPanel>            
+            </DockPanel>
         </DataTemplate>
     </Window.Resources>
     <Grid>
@@ -35,7 +34,7 @@
                  SelectedIndex="0">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
-                    <c:EventCommand Command="{Binding ReviewSelection}"/>
+                    <local:EventCommand Command="{Binding ReviewSelection}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </ListBox>

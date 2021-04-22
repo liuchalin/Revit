@@ -67,6 +67,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
@@ -113,9 +114,18 @@
     <Compile Include="MyToolUI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\Base\CommandBase.cs" />
+    <Compile Include="ViewModel\IValidationExceptionHandler.cs" />
+    <Compile Include="ViewModel\NotifyAdorner.cs" />
+    <Compile Include="ViewModel\Attribute\NonnegativeNumRule.cs" />
     <Compile Include="ViewModel\Base\NotifyPropertyBase.cs" />
     <Compile Include="ViewModel\Base\EventCommand.cs" />
+    <Compile Include="ViewModel\Attribute\PositiveNumRule.cs" />
+    <Compile Include="ViewModel\Base\CheckConverter.cs" />
+    <Compile Include="ViewModel\Attribute\RangeNumRule.cs" />
+    <Compile Include="ViewModel\Base\ValidateBase.cs" />
+    <Compile Include="ViewModel\Base\ValidationExceptonBehavior.cs" />
     <Compile Include="ViewModel\VM_ArrangeCableTrayHanger.cs" />
+    <Compile Include="ViewModel\VM_CalVoltageDrop.cs" />
     <Compile Include="ViewModel\VM_CheckCableCountInfo.cs" />
     <Compile Include="ViewModel\VM_FindCableTrayPath.cs" />
     <Compile Include="ViewModel\Base\WindowBehavior.cs" />
@@ -124,8 +134,8 @@
     <Compile Include="View\Window_ArrangeCableTrayHanger.xaml.cs">
       <DependentUpon>Window_ArrangeCableTrayHanger.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Window_CalVlotageDrop.xaml.cs">
-      <DependentUpon>Window_CalVlotageDrop.xaml</DependentUpon>
+    <Compile Include="View\Window_CalVoltageDrop.xaml.cs">
+      <DependentUpon>Window_CalVoltageDrop.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Window_CheckCableCountInfo.xaml.cs">
       <DependentUpon>Window_CheckCableCountInfo.xaml</DependentUpon>
@@ -149,7 +159,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Window_CalVlotageDrop.xaml">
+    <Page Include="View\Window_CalVoltageDrop.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -170,7 +180,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="ViewModel\Img\warning.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="ButtonIcon\16px\CheckCableCountInfo.png" />
     <Resource Include="ButtonIcon\16px\clip.png" />
