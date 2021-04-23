@@ -46,7 +46,7 @@ namespace MyTool.ViewModel
         [NonnegativeNumRule]
         public double Length
         {
-            get { return _electircPower; }
+            get { return _length; }
             set
             {
                 if (_length != value)
@@ -140,6 +140,7 @@ namespace MyTool.ViewModel
             VoltageDrop = 0;
             PowerFactor = 0.85;
             Resistivity = 0.0175;
+            IsValid = true;
         }
     }
 }

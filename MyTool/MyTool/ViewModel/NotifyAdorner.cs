@@ -19,11 +19,11 @@ namespace MyTool.ViewModel
             _visuals = new VisualCollection(this);
             _image = new Image()
             {
-                Width = 16,
-                Height = 16,
-                Source = new BitmapImage(new Uri("/Img/warning.png", UriKind.RelativeOrAbsolute))
+                Width = 20,
+                Height = 20,
+                Source = new BitmapImage(new Uri("pack://application:,,,/MyTool;component/ViewModel/warning.png", UriKind.Absolute))
             };
-            _tooltip = new TextBlock() { Text = errorMessage };
+            _tooltip = new TextBlock() { Text = errorMessage, FontSize = 14 };
             _image.ToolTip = _tooltip;
             _canvas = new Canvas();
             _canvas.Children.Add(_image);

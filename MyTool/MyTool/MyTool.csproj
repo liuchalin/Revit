@@ -181,7 +181,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="ViewModel\Img\warning.png" />
+    <Resource Include="ViewModel\warning.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ButtonIcon\16px\CheckCableCountInfo.png" />
