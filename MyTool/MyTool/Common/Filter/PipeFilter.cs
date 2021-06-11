@@ -1,14 +1,14 @@
 ﻿using Autodesk.Revit.DB;
-using Autodesk.Revit.DB.Electrical;
+using Autodesk.Revit.DB.Plumbing;
 using Autodesk.Revit.UI.Selection;
 
-namespace MyTool.Filter
+namespace MyTool
 {
-    class CableTrayFilter : ISelectionFilter
+    class PipeFilter : ISelectionFilter
     {
         public bool AllowElement(Element elem)
         {
-            return elem is CableTray;
+            return elem is Pipe;
         }
 
         public bool AllowReference(Reference reference, XYZ position)

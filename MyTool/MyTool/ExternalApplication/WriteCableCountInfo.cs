@@ -4,8 +4,6 @@ using Autodesk.Revit.DB.Electrical;
 using Autodesk.Revit.DB.ExtensibleStorage;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Selection;
-using MyTool.Common;
-using MyTool.Filter;
 using MyTool.View;
 using MyTool.ViewModel;
 using System;
@@ -16,7 +14,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Interop;
 
-namespace MyTool.CableCount
+namespace MyTool
 {
     [Transaction(TransactionMode.Manual)]
     class WriteCableCountInfo : IExternalCommand
@@ -116,6 +114,7 @@ namespace MyTool.CableCount
             return Result.Succeeded;
         }
 
+        //写数据
         void AddDate(Document doc, List<Element> elems, Guid cableCountSchemaId, string typeName, int count)
         {
             Transaction trans = new Transaction(doc, "电缆统计信息拓展存储");
@@ -180,6 +179,7 @@ namespace MyTool.CableCount
             trans.Commit();
         }
 
+        //创建扩展存储Schema
         Schema CableCount(Guid id, AccessLevel readAccessLevel, AccessLevel writeAccessLevel)
         {
             if (Schema.Lookup(id) != null)

@@ -2,18 +2,16 @@
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Selection;
-using MyTool.Filter;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using OperationCanceledException = Autodesk.Revit.Exceptions.OperationCanceledException;
 
-namespace MyTool.Split
+namespace MyTool
 {
     [Transaction(TransactionMode.Manual)]
     class MEPSplit : IExternalCommand
     {
-        public Result Execute(ExternalCommandData commandData, ref string message, Autodesk.Revit.DB.ElementSet elements)
+        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             UIDocument uiDoc = commandData.Application.ActiveUIDocument;
             Document doc = uiDoc.Document;
@@ -34,6 +32,7 @@ namespace MyTool.Split
                         TaskDialog.Show("错误", "你选择的构件不可以分割");
                         return Result.Cancelled;
                     }
+                    //创建打断后的Element
                     XYZ startPt = lc.Curve.GetEndPoint(0);
                     XYZ endPt = lc.Curve.GetEndPoint(1);
                     Line l1 = Line.CreateBound(startPt, cutPt);
@@ -42,6 +41,8 @@ namespace MyTool.Split
                     Element elem2 = doc.GetElement(ElementTransformUtils.CopyElement(doc, elem.Id, new XYZ(0, 0, 0)).First());
                     (elem1.Location as LocationCurve).Curve = l1;
                     (elem2.Location as LocationCurve).Curve = l2;
+
+                    //获取原始Element的连接关系，并转移给新的Element
                     List<Connector> originalCons = GetConnectors(elem);
                     List<Connector> linkCons = new List<Connector>();
                     List<Connector> targetCons = GetConnectors(elem1).Union(GetConnectors(elem2)).ToList();
@@ -87,6 +88,7 @@ namespace MyTool.Split
             return Result.Succeeded;
         }
 
+        //获取与目标Connector最近的Connector
         Connector NearConnector(List<Connector> connectors, Connector targetCon)
         {
             double distance = double.MaxValue;
@@ -103,6 +105,7 @@ namespace MyTool.Split
             return nearCon;
         }
 
+        //获取连接件的Connectors
         List<Connector> GetConnectors(Element elem)
         {
             List<Connector> outList = new List<Connector>();

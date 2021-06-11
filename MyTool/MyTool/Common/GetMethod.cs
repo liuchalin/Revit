@@ -1,6 +1,6 @@
 ﻿using Autodesk.Revit.DB;
 
-namespace MyTool.Common
+namespace MyTool
 {
     public static class GetMethod
     {

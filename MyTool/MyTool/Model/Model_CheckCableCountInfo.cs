@@ -1,4 +1,4 @@
-﻿namespace MyTool.Model
+﻿namespace MyTool
 {
     public class Model_CheckCableCountInfo
     {

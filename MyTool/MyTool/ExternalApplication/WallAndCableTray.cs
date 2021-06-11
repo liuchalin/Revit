@@ -3,13 +3,11 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Electrical;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Selection;
-using MyTool.Common;
-using MyTool.Filter;
 using System.Collections.Generic;
 using System.Linq;
 using OperationCanceledException = Autodesk.Revit.Exceptions.OperationCanceledException;
 
-namespace MyTool.Opening
+namespace MyTool
 {
     [Transaction(TransactionMode.Manual)]
     class WallAndCableTray : IExternalCommand
@@ -57,6 +55,7 @@ namespace MyTool.Opening
             return Result.Succeeded;
         }
 
+        //开矩形孔洞
         void RectangleOpen(Document doc, Wall wall, CableTray cableTray)
         {
             SubTransaction subTrans = new SubTransaction(doc);
@@ -81,12 +80,16 @@ namespace MyTool.Opening
                 subTrans.Dispose();
             }
         }
+
+        //获取墙LocationCurve方向
         XYZ GetWallVector(Wall wall)
         {
             LocationCurve lCurve = wall.Location as LocationCurve;
             XYZ xyz = lCurve.Curve.GetEndPoint(1) - lCurve.Curve.GetEndPoint(0);
             return xyz;
         }
+
+        //获取桥架LocationCurve与墙面交点
         XYZ GetIntersection(Face face, Curve curve)
         {
             XYZ intersectionResult = null;
@@ -101,6 +104,8 @@ namespace MyTool.Opening
             }
             return intersectionResult;
         }
+
+        //获取墙面
         Face GetWallFace(Wall wall)
         {
             Face normalface = null;

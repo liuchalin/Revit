@@ -1,14 +1,13 @@
 ﻿using Autodesk.Revit.DB;
-using Autodesk.Revit.DB.Plumbing;
 using Autodesk.Revit.UI.Selection;
 
-namespace MyTool.Filter
+namespace MyTool
 {
-    class PipeFilter : ISelectionFilter
+    class WallFilter : ISelectionFilter
     {
         public bool AllowElement(Element elem)
         {
-            return elem is Pipe;
+            return elem is Wall;
         }
 
         public bool AllowReference(Reference reference, XYZ position)

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MyTool.ViewModel.Base
+namespace MyTool.ViewModel
 {
     class PositiveNumRule : ValidationAttribute
     {

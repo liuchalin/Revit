@@ -2,9 +2,8 @@
 using Autodesk.Revit.DB.Electrical;
 using Autodesk.Revit.DB.Plumbing;
 using Autodesk.Revit.UI.Selection;
-using MyTool.Common;
 
-namespace MyTool.Filter
+namespace MyTool
 {
     class MEPFilter : ISelectionFilter
     {

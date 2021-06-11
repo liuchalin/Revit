@@ -5,7 +5,7 @@ using MyTool.View;
 using System.Windows.Interop;
 using MyTool.ViewModel;
 
-namespace MyTool.Calculation
+namespace MyTool
 {
     [Transaction(TransactionMode.Manual)]
     class CalVoltageDrop : IExternalCommand

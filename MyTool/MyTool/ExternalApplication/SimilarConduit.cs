@@ -3,13 +3,11 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Electrical;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Selection;
-using MyTool.Common;
-using MyTool.Filter;
 using System.Collections.Generic;
 using System.Linq;
 using OperationCanceledException = Autodesk.Revit.Exceptions.OperationCanceledException;
 
-namespace MyTool.Arrangement
+namespace MyTool
 {
     [Transaction(TransactionMode.Manual)]
     class SimilarConduit : IExternalCommand
@@ -20,6 +18,8 @@ namespace MyTool.Arrangement
             Document doc = uiDoc.Document;
             Selection sel = uiDoc.Selection;
             List<Element> templateElems = null;
+
+        //框选基准线和标准段
         SelecTemplate:
             try
             {
@@ -44,6 +44,7 @@ namespace MyTool.Arrangement
             }
             Dictionary<Conduit, XYZ> conduitVectorPairs = GetConduitVectorPairs(templateConduits, templateML.FirstOrDefault());
 
+            //创建
             Transaction ts = new Transaction(doc, "创建标准断");
             try
             {
@@ -76,6 +77,7 @@ namespace MyTool.Arrangement
             return Result.Succeeded;
         }
 
+        //创建单根线管
         Conduit CreatOneConduit(Document doc, Element elem, ConduitType type, XYZ vector)
         {
             XYZ pt1 = (elem.Location as LocationCurve).Curve.GetEndPoint(0);
@@ -96,6 +98,7 @@ namespace MyTool.Arrangement
             return Conduit.Create(doc, type.Id, spt, ept, elem.LevelId);
         }
 
+        //获取标准段与基准线相对坐标
         Dictionary<Conduit, XYZ> GetConduitVectorPairs(List<Conduit> templateConduit, ModelLine datumLine)
         {
             Dictionary<Conduit, XYZ> outPairs = new Dictionary<Conduit, XYZ>();

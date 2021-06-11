@@ -1,7 +1,7 @@
 ﻿using Autodesk.Revit.DB;
 using System.Collections.Generic;
 
-namespace MyTool.Model
+namespace MyTool
 {
     public class Model_FindCableTrayPath
     {

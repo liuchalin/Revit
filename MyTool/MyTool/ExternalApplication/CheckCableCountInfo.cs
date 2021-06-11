@@ -3,8 +3,6 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.ExtensibleStorage;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Selection;
-using MyTool.Common;
-using MyTool.Filter;
 using MyTool.View;
 using MyTool.ViewModel;
 using System;
@@ -14,7 +12,7 @@ using System.Data;
 using System.IO;
 using System.Windows.Interop;
 
-namespace MyTool.CableCount
+namespace MyTool
 {
     [Transaction(TransactionMode.Manual)]
     class CheckCableCountInfo : IExternalCommand

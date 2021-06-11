@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using System.IO;
 
-namespace MyTool.CableCount
+namespace MyTool
 {
     public class CableInfoManager
     {
@@ -13,6 +13,7 @@ namespace MyTool.CableCount
             return instance;
         }
 
+        //根据CSV创建DataTable
         public DataTable ReadCSV(string filePath)
         {
             DataTable dt = new DataTable();

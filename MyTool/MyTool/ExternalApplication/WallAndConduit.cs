@@ -3,13 +3,11 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Electrical;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Selection;
-using MyTool.Common;
-using MyTool.Filter;
 using System.Collections.Generic;
 using System.Linq;
 using OperationCanceledException = Autodesk.Revit.Exceptions.OperationCanceledException;
 
-namespace MyTool.Opening
+namespace MyTool
 {
     [Transaction(TransactionMode.Manual)]
     class WallAndConduit : IExternalCommand
@@ -65,6 +63,7 @@ namespace MyTool.Opening
             return Result.Succeeded;
         }
 
+        //获取线管LocationCurve与墙面交点
         XYZ GetIntersection(Face face, Curve curve)
         {
             XYZ intersectionResult = null;
@@ -80,6 +79,7 @@ namespace MyTool.Opening
             return intersectionResult;
         }
 
+        //获取墙面
         Face GetWallFace(Wall wall)
         {
             Face normalface = null;
@@ -106,6 +106,7 @@ namespace MyTool.Opening
             return normalface;
         }
 
+        //布置孔洞族
         void CircularOpen(Document doc, Wall wall, Conduit conduit, FamilySymbol familySymbol)
         {
             SubTransaction subTrans = new SubTransaction(doc);
@@ -130,6 +131,7 @@ namespace MyTool.Opening
             }
         }
 
+        //加载圆形孔洞族
         FamilySymbol LoadRfa(Document doc, string rfaname)
         {
             FamilySymbol familySymbol = null;

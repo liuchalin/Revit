@@ -2,15 +2,13 @@
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Selection;
-using MyTool.Common;
-using MyTool.Filter;
 using MyTool.View;
 using MyTool.ViewModel;
 using System.Collections.Generic;
 using System.Windows.Interop;
 using OperationCanceledException = Autodesk.Revit.Exceptions.OperationCanceledException;
 
-namespace MyTool.Arrangement
+namespace MyTool
 {
     [Transaction(TransactionMode.Manual)]
     class ArrangeCableTrayHanger : IExternalCommand
@@ -67,6 +65,7 @@ namespace MyTool.Arrangement
             return Result.Succeeded;
         }
 
+        //布置支吊架，设定宽度，旋转角，标高偏移
         void CreatHanger(Document doc, List<XYZ> insertPts, FamilySymbol hangerType, Level lv, double width, double offset, double angle)
         {
             for (int i = 0; i < insertPts.Count; i++)
@@ -80,6 +79,7 @@ namespace MyTool.Arrangement
             }
         }
 
+        //加载支吊架族
         FamilySymbol LoadRfa(Document doc, string rfaName)
         {
             FamilySymbol familySymbol = null;
@@ -96,6 +96,7 @@ namespace MyTool.Arrangement
             return familySymbol;
         }
 
+        //根据布置间距，获取布置点坐标
         List<XYZ> GetInsertPts(Element elem, double distance, out XYZ hostElemVector)
         {
             List<XYZ> insertPts = new List<XYZ>();

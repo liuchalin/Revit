@@ -1,7 +1,7 @@
 ﻿using Autodesk.Revit.UI;
 using System;
 
-namespace MyTool.Common
+namespace MyTool
 {
     class RevitEventHandler : IExternalEventHandler
     {

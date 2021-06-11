@@ -2,13 +2,13 @@
 using Autodesk.Revit.DB.Electrical;
 using Autodesk.Revit.UI.Selection;
 
-namespace MyTool.Filter
+namespace MyTool
 {
-    class ConduitFilter : ISelectionFilter
+    class ConduitAndModelLineFIlter : ISelectionFilter
     {
         public bool AllowElement(Element elem)
         {
-            return elem is Conduit;
+            return (elem is Conduit || elem is ModelLine);
         }
 
         public bool AllowReference(Reference reference, XYZ position)

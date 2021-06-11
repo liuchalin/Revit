@@ -2,7 +2,7 @@
 using Autodesk.Revit.DB.Plumbing;
 using Autodesk.Revit.UI.Selection;
 
-namespace MyTool.Filter
+namespace MyTool
 {
     class PipePathFilter : ISelectionFilter
     {

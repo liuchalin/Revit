@@ -87,30 +87,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Arrangement\SimilarConduit.cs" />
-    <Compile Include="CableCount\CableInfoManager.cs" />
-    <Compile Include="CableCount\CheckCableCountInfo.cs" />
-    <Compile Include="CableCount\WriteCableCountInfo.cs" />
-    <Compile Include="Calculation\CalVoltageDrop.cs" />
+    <Compile Include="InProgressing\Rotation.cs" />
+    <Compile Include="ExternalApplication\SimilarConduit.cs" />
+    <Compile Include="Common\CableInfoManager.cs" />
+    <Compile Include="ExternalApplication\CheckCableCountInfo.cs" />
+    <Compile Include="ExternalApplication\WriteCableCountInfo.cs" />
+    <Compile Include="ExternalApplication\CalVoltageDrop.cs" />
     <Compile Include="Common\GetMethod.cs" />
     <Compile Include="Common\RevitEventHandler.cs" />
-    <Compile Include="Filter\CableTrayFilter.cs" />
-    <Compile Include="Filter\CableTrayPathFilter.cs" />
-    <Compile Include="Filter\ConduitAndModelLineFIlter.cs" />
-    <Compile Include="Filter\ConduitFilter.cs" />
-    <Compile Include="Filter\MEPFilter.cs" />
-    <Compile Include="Filter\PipeFilter.cs" />
-    <Compile Include="Filter\PipePathFilter.cs" />
-    <Compile Include="Filter\WallFilter.cs" />
-    <Compile Include="FindPath\FindCableTrayPath.cs" />
-    <Compile Include="FindPath\FindPipePath.cs" />
-    <Compile Include="Arrangement\ArrangeCableTrayHanger.cs" />
+    <Compile Include="Common\Filter\CableTrayFilter.cs" />
+    <Compile Include="Common\Filter\CableTrayPathFilter.cs" />
+    <Compile Include="Common\Filter\ConduitAndModelLineFIlter.cs" />
+    <Compile Include="Common\Filter\ConduitFilter.cs" />
+    <Compile Include="Common\Filter\MEPFilter.cs" />
+    <Compile Include="Common\Filter\PipeFilter.cs" />
+    <Compile Include="Common\Filter\PipePathFilter.cs" />
+    <Compile Include="Common\Filter\PointInstanceFilter.cs" />
+    <Compile Include="Common\Filter\WallFilter.cs" />
+    <Compile Include="ExternalApplication\FindCableTrayPath.cs" />
+    <Compile Include="ExternalApplication\FindPipePath.cs" />
+    <Compile Include="ExternalApplication\ArrangeCableTrayHanger.cs" />
     <Compile Include="Model\Model_CheckCableCountInfo.cs" />
     <Compile Include="Model\Model_FindCableTrayPath.cs" />
     <Compile Include="Model\Model_FindPipePath.cs" />
-    <Compile Include="Opening\WallAndCableTray.cs" />
-    <Compile Include="Opening\WallAndConduit.cs" />
-    <Compile Include="Split\MEPSplit.cs" />
+    <Compile Include="ExternalApplication\WallAndCableTray.cs" />
+    <Compile Include="ExternalApplication\WallAndConduit.cs" />
+    <Compile Include="ExternalApplication\MEPSplit.cs" />
     <Compile Include="MyToolUI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\Base\CommandBase.cs" />
@@ -184,13 +186,10 @@
     <Resource Include="ViewModel\warning.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="ButtonIcon\16px\CheckCableCountInfo.png" />
     <Resource Include="ButtonIcon\16px\clip.png" />
     <Resource Include="ButtonIcon\16px\creatsimilar.png" />
-    <Resource Include="ButtonIcon\16px\cut.png" />
     <Resource Include="ButtonIcon\16px\hanger.png" />
     <Resource Include="ButtonIcon\16px\route.png" />
-    <Resource Include="ButtonIcon\16px\WriteCableCountInfo.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ButtonIcon\32px\CheckCableCountInfo.png" />
@@ -200,6 +199,12 @@
     <Resource Include="ButtonIcon\32px\hanger.png" />
     <Resource Include="ButtonIcon\32px\route.png" />
     <Resource Include="ButtonIcon\32px\WriteCableCountInfo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ButtonIcon\16px\Cal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ButtonIcon\32px\Cal.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
